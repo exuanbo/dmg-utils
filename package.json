@@ -1,0 +1,49 @@
+{
+  "name": "dmg-utils",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/types/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist && rollup -c && tsc -d --emitDeclarationOnly --declarationDir dist/types",
+    "lint": "eslint \"**/*.{js,ts}\"",
+    "format": "prettier --write .",
+    "test": "yarn lint && yarn build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exuanbo/dmg-utils.git"
+  },
+  "keywords": [],
+  "author": "exuanbo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/exuanbo/dmg-utils/issues"
+  },
+  "homepage": "https://github.com/exuanbo/dmg-utils#readme",
+  "dependencies": {
+    "fs-extra": "9.0.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "6.1.0",
+    "@types/fs-extra": "9.0.2",
+    "@types/node": "14.14.5",
+    "@typescript-eslint/eslint-plugin": "4.6.0",
+    "@typescript-eslint/parser": "4.6.0",
+    "eslint": "7.12.1",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-config-standard": "15.0.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.2",
+    "prettier": "2.1.2",
+    "prettier-config-standard": "1.0.1",
+    "rimraf": "3.0.2",
+    "rollup": "2.32.1",
+    "tslib": "2.0.3",
+    "typescript": "4.0.5"
+  }
+}
