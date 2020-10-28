@@ -1,12 +1,17 @@
 # dmg-utils [WIP]
 
+> Util lib for DMG files.
+
+[![npm](https://img.shields.io/npm/v/dmg-utils.svg?style=flat-square)](https://www.npmjs.com/package/dmg-utils)
+[![David](https://img.shields.io/david/exuanbo/dmg-utils.svg?style=flat-square)](https://david-dm.org/exuanbo/dmg-utils)
+
 By now it only works on macOS.
 
-<!-- ## Install
+## Install
 
 ```sh
 npm install dmg-utils
-``` -->
+```
 
 ## API
 
