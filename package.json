@@ -1,6 +1,6 @@
 {
   "name": "dmg-utils",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Util lib for DMG files.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -15,7 +15,9 @@
     "type": "git",
     "url": "git+https://github.com/exuanbo/dmg-utils.git"
   },
-  "keywords": ["dmg"],
+  "keywords": [
+    "dmg"
+  ],
   "author": "exuanbo",
   "license": "MIT",
   "bugs": {
