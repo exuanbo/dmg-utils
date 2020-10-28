@@ -1,2 +1,3 @@
 dist/
+src/utils.ts
 tsconfig.json
