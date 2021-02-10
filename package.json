@@ -4,13 +4,15 @@
   "description": "Util lib for DMG files.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
-  "types": "dist/types/index.d.ts",
-  "files": ["dist"],
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rimraf dist && rollup -c && tsc -d --emitDeclarationOnly --declarationDir dist/types",
-    "lint": "eslint \"**/*.{js,ts}\"",
-    "format": "prettier --write .",
-    "test": "yarn lint && yarn build"
+    "clean": "rimraf .cache dist",
+    "dts": "tsc -d --emitDeclarationOnly --declarationDir .cache",
+    "bundle": "rollup -c",
+    "build": "npm run clean && npm run dts && npm run bundle",
+    "lint": "ts-standardx",
+    "lint:fix": "ts-standardx --fix",
+    "test": "npm run lint && npm run build"
   },
   "repository": {
     "type": "git",
