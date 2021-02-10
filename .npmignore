@@ -1,0 +1,5 @@
+.cache/
+.github/
+rollup.config.js
+src/
+tsconfig.json
