@@ -15,26 +15,6 @@ npm install dmg-utils
 
 ## API
 
-### command
-
-```ts
-declare const generateCommand: <T extends string>({
-  mount
-}: {
-  mount: boolean
-}) => (path: T) => `hdiutil mount -nobrowse "${T}"` | `hdiutil unmount "${T}"`
-```
-
-```js
-import { generateCommand } from 'dmg-utils'
-
-generateCommand({ mount: true })('./App.dmg')
-// => 'hdiutil mount -nobrowse "./App.dmg"'
-
-generateCommand({ mount: false })('/Volumes/App')
-// => 'hdiutil unmount "/Volumes/App"'
-```
-
 ### mount
 
 ```ts
@@ -62,6 +42,28 @@ declare const extract: (dmgPath: string, destPath: string) => Promise<void>
 ```
 
 Uses `copy` from `fs-extra`.
+
+### generateCommand
+
+```ts
+declare type Action = 'mount -nobrowse' | 'unmount'
+declare type Command = `hdiutil ${Action} "${string}"`
+declare const generateCommand: ({
+  mount
+}: {
+  mount: boolean
+}) => (path: string) => Command
+```
+
+```js
+import { generateCommand } from 'dmg-utils'
+
+generateCommand({ mount: true })('./App.dmg')
+// => 'hdiutil mount -nobrowse "./App.dmg"'
+
+generateCommand({ mount: false })('/Volumes/App')
+// => 'hdiutil unmount "/Volumes/App"'
+```
 
 ## License
 
