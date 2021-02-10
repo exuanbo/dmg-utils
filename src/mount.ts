@@ -6,16 +6,16 @@ export const mount = async <T = string>(
 ): Promise<string | T> => {
   const { stdout, stderr } = await execAsync(command(true)(dmgPath))
 
-  if (stderr) {
+  if (stderr !== undefined) {
     throw new Error(stderr)
   }
 
   const match = stdout.match(VOLUME_REGEX)
-  if (!match) {
+  if (match === null) {
     throw new Error(`Could not extract path out of mount result: ${stdout}`)
   }
 
-  if (callback) {
+  if (callback !== undefined) {
     return callback(match[0])
   }
 

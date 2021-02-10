@@ -11,4 +11,4 @@ type Command<T extends string> = `hdiutil ${Action} "${T}"`
 export const command = <T extends string, K extends Command<T>>(
   mount: boolean
 ) => (path: T): K =>
-  `hdiutil ${mount ? "mount -nobrowse" : "unmount"} "${path}"` as K
+  `hdiutil ${mount ? 'mount -nobrowse' : 'unmount'} "${path}"` as K
