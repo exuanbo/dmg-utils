@@ -6,11 +6,8 @@ export const VOLUME_REGEX = /\/Volumes\/(.*)/m
 export const execAsync = promisify(exec)
 
 type Action = 'mount -nobrowse' | 'unmount'
-type Command<T extends string> = `hdiutil ${Action} "${T}"`
+type Command = `hdiutil ${Action} "${string}"`
 
-export const generateCommand = <T extends string>({
-  mount
-}: {
-  mount: boolean
-}) => (path: T): Command<T> =>
-  `hdiutil ${mount ? 'mount -nobrowse' : 'unmount'} "${path}"`
+export const generateCommand = ({ mount }: { mount: boolean }) => (
+  path: string
+): Command => `hdiutil ${mount ? 'mount -nobrowse' : 'unmount'} "${path}"`
