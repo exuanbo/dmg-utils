@@ -3,7 +3,7 @@
 > Util lib for DMG files.
 
 [![npm](https://img.shields.io/npm/v/dmg-utils.svg?style=flat-square)](https://www.npmjs.com/package/dmg-utils)
-[![David](https://img.shields.io/david/exuanbo/dmg-utils.svg?style=flat-square)](https://david-dm.org/exuanbo/dmg-utils)
+[![libera manifesto](https://img.shields.io/badge/libera-manifesto-lightgrey.svg)](https://liberamanifesto.com)
 
 By now it only works on macOS.
 
@@ -18,49 +18,47 @@ npm install dmg-utils
 ### command
 
 ```ts
-export declare const command: <
-  T extends string,
-  K extends `hdiutil mount -nobrowse "${T}"` | `hdiutil unmount "${T}"`
->(mount: boolean) => (path: T) => K
+declare const generateCommand: <T extends string>({
+  mount
+}: {
+  mount: boolean
+}) => (path: T) => `hdiutil mount -nobrowse "${T}"` | `hdiutil unmount "${T}"`
 ```
 
 ```js
-import { command } from 'dmg-utils'
+import { generateCommand } from 'dmg-utils'
 
-command(true)('./App.dmg')
-//=> 'hdiutil mount -nobrowse "./App.dmg"'
+generateCommand({ mount: true })('./App.dmg')
+// => 'hdiutil mount -nobrowse "./App.dmg"'
 
-command(false)('/Volumes/App')
-//=> 'hdiutil unmount "/Volumes/App"'
+generateCommand({ mount: false })('/Volumes/App')
+// => 'hdiutil unmount "/Volumes/App"'
 ```
 
 ### mount
 
 ```ts
-export declare const mount: <T = string>(
+declare const mount: (
   dmgPath: string,
-  callback?: ((volumePath: string) => T) | undefined
-) => Promise<string | T>
+  callback?: ((volumePath: string) => void) | undefined
+) => Promise<string>
 ```
 
-Returns mounted volume path if no callback function provided.
+Returns mounted volume path.
 
 ### unmount
 
 ```ts
-export declare const unmount: (
+declare const unmount: (
   volumePath: string,
-  callback?: Function | undefined
+  callback?: (() => void) | undefined
 ) => Promise<void>
 ```
 
 ### extract
 
 ```ts
-export declare const extract: (
-  dmgPath: string,
-  destPath: string
-) => Promise<void>
+declare const extract: (dmgPath: string, destPath: string) => Promise<void>
 ```
 
 Uses `copy` from `fs-extra`.
