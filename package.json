@@ -1,6 +1,6 @@
 {
   "name": "dmg-utils",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Util lib for DMG files.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
