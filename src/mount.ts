@@ -1,9 +1,9 @@
 import { execAsync, VOLUME_REGEX, command } from './utils'
 
-export const mount = async <T = string>(
+export const mount = async (
   dmgPath: string,
-  callback?: (volumePath: string) => T
-): Promise<string | T> => {
+  callback?: (volumePath: string) => void
+): Promise<string> => {
   const { stdout, stderr } = await execAsync(command(true)(dmgPath))
 
   if (stderr !== undefined) {
@@ -16,7 +16,7 @@ export const mount = async <T = string>(
   }
 
   if (callback !== undefined) {
-    return callback(match[0])
+    callback(match[0])
   }
 
   return match[0]
