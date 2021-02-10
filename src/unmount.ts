@@ -1,4 +1,4 @@
-import { execAsync, VOLUME_REGEX, command } from './utils'
+import { execAsync, VOLUME_REGEX, generateCommand } from './utils'
 
 export const unmount = async (
   volumePath: string,
@@ -8,7 +8,9 @@ export const unmount = async (
     throw new Error('Path must contain /Volumes/')
   }
 
-  const { stderr } = await execAsync(command(false)(volumePath))
+  const { stderr } = await execAsync(
+    generateCommand({ mount: false })(volumePath)
+  )
 
   if (stderr !== undefined) {
     throw new Error(stderr)

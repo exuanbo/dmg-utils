@@ -1,10 +1,12 @@
-import { execAsync, VOLUME_REGEX, command } from './utils'
+import { execAsync, VOLUME_REGEX, generateCommand } from './utils'
 
 export const mount = async (
   dmgPath: string,
   callback?: (volumePath: string) => void
 ): Promise<string> => {
-  const { stdout, stderr } = await execAsync(command(true)(dmgPath))
+  const { stdout, stderr } = await execAsync(
+    generateCommand({ mount: true })(dmgPath)
+  )
 
   if (stderr !== undefined) {
     throw new Error(stderr)

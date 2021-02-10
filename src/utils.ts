@@ -8,7 +8,9 @@ export const execAsync = promisify(exec)
 type Action = 'mount -nobrowse' | 'unmount'
 type Command<T extends string> = `hdiutil ${Action} "${T}"`
 
-export const command = <T extends string, K extends Command<T>>(
+export const generateCommand = <T extends string>({
+  mount
+}: {
   mount: boolean
-) => (path: T): K =>
-  `hdiutil ${mount ? 'mount -nobrowse' : 'unmount'} "${path}"` as K
+}) => (path: T): Command<T> =>
+  `hdiutil ${mount ? 'mount -nobrowse' : 'unmount'} "${path}"`
